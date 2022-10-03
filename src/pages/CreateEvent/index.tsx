@@ -136,7 +136,13 @@ const CreateEventPage = (props: Props) => {
           </FormControl>
         </Flex>
 
-        <Button onClick={handleCreateEvent} disabled={isInvalid}>
+        <Button
+          variant="envited"
+          onClick={handleCreateEvent}
+          disabled={isInvalid}
+          width="md"
+          alignSelf="center"
+        >
           Next
         </Button>
       </Box>

@@ -46,7 +46,7 @@ const LandingPage = (props: Props) => {
           variant="solid"
           size="lg"
           width="xs"
-          mx="auto"
+          mx={{ base: "auto", lg: 0 }}
           onClick={() => navigate("/create")}
         >
           🎉 Create my event

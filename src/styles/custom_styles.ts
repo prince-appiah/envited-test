@@ -1,12 +1,35 @@
 import { ComponentStyleConfig, extendTheme } from "@chakra-ui/react";
 
 const Button: ComponentStyleConfig = {
-  baseStyle: { borderRadius: 6, _focus: { boxShadow: "none" } },
-  variants: {
-    solid: (props: any) => ({
+  baseStyle: {
+    borderRadius: 6,
+    _focus: { boxShadow: "none" },
+    _hover: {
       bgGradient: "linear(to-r,#8456e6,#e87bf8)",
       color: "white",
-    }),
+    },
+  },
+
+  variants: {
+    solid: {
+      bgGradient: "linear(to-r,#8456e6,#e87bf8)",
+      color: "white",
+      _hover: {
+        bgGradient: "linear(to-r,#8456e6,#e87bf8)",
+        color: "white",
+      },
+    },
+    envited: {
+      bgGradient: "linear(to-r,#8456e6,#e87bf8)",
+      color: "white",
+      py: 8,
+    },
+    outline: {
+      _hover: {
+        bgColor: "gray.200",
+        color: "black",
+      },
+    },
   },
 };
 

@@ -1,29 +1,22 @@
-import { CalendarIcon } from "@chakra-ui/icons";
+import { CalendarIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Center,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   Icon,
   IconButton,
   Image,
-  Input,
-  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
 import { ImLocation2, ImPencil } from "react-icons/im";
 import Moment from "react-moment";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { eventState } from "../../atoms/eventState";
-import { IEvent } from "../../typings";
 
 type Props = {};
 
@@ -35,27 +28,27 @@ const EventPage = (props: Props) => {
   const [editing, setEditing] = useState(false);
   const navigate = useNavigate();
   const setEventState = useSetRecoilState(eventState);
-  const [startDate, setStartDate] = useState(new Date(event?.startDate));
-  const [endDate, setEndDate] = useState(new Date(event?.endDate));
-  const [eventData, setEventData] = useState<Omit<IEvent, "id">>({
-    host: event?.host ?? "",
-    name: event?.name ?? "",
-    location: event?.location ?? "",
-    photo: "",
-  });
+  // const [startDate, setStartDate] = useState(new Date(event?.startDate));
+  // const [endDate, setEndDate] = useState(new Date(event?.endDate));
+  // const [eventData, setEventData] = useState<Omit<IEvent, "id">>({
+  //   host: event?.host ?? "",
+  //   name: event?.name ?? "",
+  //   location: event?.location ?? "",
+  //   photo: "",
+  // });
 
-  const handleEditEvent = () => {
-    setEventState((prev) => ({
-      ...prev,
-      ...eventData,
-      id: nanoid(),
-      startDate,
-      endDate,
-    }));
-  };
+  // const handleEditEvent = () => {
+  //   setEventState((prev) => ({
+  //     ...prev,
+  //     ...eventData,
+  //     id: nanoid(),
+  //     startDate,
+  //     endDate,
+  //   }));
+  // };
 
-  const handleInputChange = (ev: { target: { name: any; value: any } }) =>
-    setEventData((prev) => ({ ...prev, [ev.target.name]: ev.target.value }));
+  // const handleInputChange = (ev: { target: { name: any; value: any } }) =>
+  //   setEventData((prev) => ({ ...prev, [ev.target.name]: ev.target.value }));
 
   useEffect(() => {
     if (!event) {
@@ -74,13 +67,21 @@ const EventPage = (props: Props) => {
       >
         {/* Event details */}
         <Flex direction="column" p={{ base: 6, lg: 0 }}>
-          <Flex width="sm">
+          <Flex width="sm" align="center" mb={8}>
             <IconButton
               size="sm"
               aria-label="Edit"
-              onClick={() => setEditing(!editing)}
-              icon={<ImPencil />}
+              onClick={() => navigate(-1)}
+              icon={<ChevronLeftIcon />}
+              mr={6}
             />
+            <Button
+              variant="outline"
+              onClick={() => setEditing(!editing)}
+              leftIcon={<ImPencil />}
+            >
+              Edit Event
+            </Button>
           </Flex>
           <Flex direction="column" mb={16}>
             <Heading>{event?.name}</Heading>
@@ -116,7 +117,7 @@ const EventPage = (props: Props) => {
         />
       </Flex>
 
-      <Flex
+      {/* <Flex
         py={{ base: 8, lg: 16 }}
         px={{ base: 4, lg: 170 }}
         direction="column"
@@ -181,7 +182,7 @@ const EventPage = (props: Props) => {
             <Button onClick={handleEditEvent}>Edit Event</Button>
           </Box>
         )}
-      </Flex>
+      </Flex> */}
     </>
   );
 };
